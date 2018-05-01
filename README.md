@@ -1,1 +1,0 @@
-# nicehash-avg-counter
