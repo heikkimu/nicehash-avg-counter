@@ -21,7 +21,7 @@ class Plot extends React.Component {
     }
 
     updateData(props) {
-        const data = _.find(props.data, { 'algo': props.selectedCoin.algo });
+        const data = _.find(_.assign({}, props.data), { 'algo': props.selectedCoin.algo });
         if(undefined === data) {
             return
         }
@@ -50,7 +50,7 @@ class Plot extends React.Component {
         const avgSpeed = _.mean(_.map(speedsAndTimes, 'speed'));
         this.setState({ plotData: getPlotSettings(plotLabels, [
             {datasetLabel: 'Speed', data: plotData},
-            {datasetLabel: `7d Avg (${round(plotData[0])}${props.selectedCoin.suffix})`, data: _.fill(Array(plotData.length), avgSpeed)},
+            {datasetLabel: `7d Avg (${round(avgSpeed)}${props.selectedCoin.suffix})`, data: _.fill(Array(plotData.length), avgSpeed)},
         ]) })
     }
 

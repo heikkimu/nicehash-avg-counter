@@ -23,7 +23,7 @@ class Speedometer extends React.Component {
     render() {
 
         const { min, max, current } = this.state;
-        return <div style={{margin: 'auto', width: '100%', 'text-align': 'center'}}> 
+        return <div style={{margin: 'auto', width: '100%', textAlign: 'center'}}> 
                 <ReactSpeedometer
                     value={current}
                     minValue={min}
