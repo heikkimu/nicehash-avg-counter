@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
 import AppBar from './AppBar';
 import CoinSelector from './CoinSelector';
@@ -29,7 +30,8 @@ class AvgCounterApp extends React.Component {
     }
 
     componentWillMount() {
-        this.props.loadData();
+        this.props.loadData()
+        setInterval(()=>this.props.loadData(), 60000)
     }
     render() {
         const { coins, selectedCoin, past, chunkSize } = this.props.AvgCounterApp;
@@ -46,6 +48,9 @@ class AvgCounterApp extends React.Component {
                     value={chunkSize} />
                 <div style={{clear: 'both'}}></div>
                 <Paper className={classes.root} elevation={1}>
+                    <Typography variant="headline" gutterBottom align="center">
+                        Current speed
+                    </Typography>
                     <Speedometer
                         data={past}
                         selectedCoin={selectedCoin} />

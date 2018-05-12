@@ -55,7 +55,7 @@ class Plot extends React.Component {
     }
 
     render() {
-        return (<Line data={this.state.plotData} />);
+        return (<Line height={200} data={this.state.plotData} />);
     }
 }
 

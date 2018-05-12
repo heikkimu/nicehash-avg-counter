@@ -34,7 +34,7 @@ class AvgPlot extends React.Component {
         const plotData = [];
         const plotLabels = [];
         for (let i = 80; i > 0; i--) {
-            let time = 3 * i * 2 // 12 = 1h
+            let time = 1 * i * 2 // 12 = 1h
             let chunks = _.first(_.chunk(speedsAndTimes, time));
             plotData.push(_.mean(_.map(chunks, 'speed')));
             plotLabels.push(getTimeInReasonableFormat(time));
@@ -49,7 +49,7 @@ class AvgPlot extends React.Component {
     }
 
     render() {
-        return (<Line height={100} data={this.state.plotData} />);
+        return (<Line height={200} data={this.state.plotData} />);
     }
 }
 
