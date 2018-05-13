@@ -24,7 +24,11 @@ const styles = theme => ({
 class TimeSelector extends React.Component {
 
     render() {
-        const { classes, handleChange, value } = this.props;
+        const { classes, handleChange, value, error } = this.props;
+        if(error) {
+            return '';
+        }
+
         return (
             <FormControl className={classes.formControl} style={{float: 'left'}}>
                 <InputLabel htmlFor="coin-native-helper"></InputLabel>

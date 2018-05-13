@@ -31,7 +31,11 @@ class CoinSelector extends React.Component {
     }
 
     render() {
-        const { classes, handleChange, value } = this.props;
+        let { classes, handleChange, value, error} = this.props;
+        if(error) {
+            return '';
+        }
+
         return (
             <FormControl className={classes.formControl} style={{float: 'left'}}>
                 <InputLabel htmlFor="coin-native-helper"></InputLabel>
@@ -53,7 +57,8 @@ class CoinSelector extends React.Component {
 CoinSelector.propTypes = {
     classes: PropTypes.object.isRequired,
     coins: PropTypes.array.isRequired,
-    value: PropTypes.object
+    value: PropTypes.object,
+    error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]) 
 };
 
 export default withStyles(styles)(CoinSelector);

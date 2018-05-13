@@ -11,7 +11,7 @@ import Plot from './Plot';
 import AvgPlot from './AvgPlot';
 import Speedometer from './Speedometer';
 import ProgressBar from './ProgressBar';
-
+import AccountKey from './AccountKey';
 
 
 const styles = theme => ({
@@ -33,6 +33,10 @@ class AvgCounterApp extends React.Component {
             this.props.changeChunk(value * 1);
         } else if (name === 'coin') {
             this.props.changeCoin(value * 1);
+        } else if (name === 'accountKey') {
+            this.props.loadData(value);
+            this.props.changeAccount(value);
+            
         }
     }
 
@@ -41,25 +45,34 @@ class AvgCounterApp extends React.Component {
         setInterval(() => this.props.loadData(), this.state.timeout)
     }
     render() {
-        const { coins, selectedCoin, past, chunkSize } = this.props.AvgCounterApp;
+        const { coins, selectedCoin, past, chunkSize, accountKey, error, defaultAccountKey } = this.props.AvgCounterApp;
         const { timeout } = this.state;
         const { classes } = this.props;
+        console.log(this.props.AvgCounterApp);
         return (
             <div style={{ background: "#eeeeee" }}>
                 <AppBar />
                 <CoinSelector
+                    error={error}
                     handleChange={this.handleChange}
                     coins={coins}
                     value={selectedCoin} />
                 <TimeSelector
+                    error={error}
                     handleChange={this.handleChange}
                     value={chunkSize} />
+                <AccountKey 
+                    error={error}
+                    handleChange={this.handleChange}
+                    defaultAccountKey={defaultAccountKey}
+                    value={accountKey}/>
                 <div style={{ clear: 'both' }}></div>
                 <Paper className={classes.root} elevation={1}>
                     <Typography variant="headline" gutterBottom align="center">
                         Current speed
                     </Typography>
                     <Speedometer
+                        error={error}
                         data={past}
                         selectedCoin={selectedCoin} />
                     <ProgressBar timeout={timeout} />
@@ -71,6 +84,7 @@ class AvgCounterApp extends React.Component {
                         </Typography>
                     </Tooltip>
                     <AvgPlot
+                        error={error}
                         data={past}
                         chunkSize={chunkSize}
                         selectedCoin={selectedCoin} />
@@ -80,6 +94,7 @@ class AvgCounterApp extends React.Component {
                         Mining history, normalized by the sample size
                     </Typography>
                     <Plot
+                        error={error}
                         data={past}
                         chunkSize={chunkSize}
                         selectedCoin={selectedCoin} />

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AvgCounterApp from '../components/AvgCounterApp'
-import { changeCoin, loadData, changeChunk } from '../redux/modules/AvgCounterApp';
+import { changeAccount, changeCoin, loadData, changeChunk } from '../redux/modules/AvgCounterApp';
 
 function mapStateToProps(state) {
     return {
@@ -10,6 +10,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        changeAccount: (value) => dispatch(changeAccount(value)),
         changeCoin: (value) => dispatch(changeCoin(value)),
         changeChunk: (value) => dispatch(changeChunk(value)),
         loadData: () => dispatch(loadData())
