@@ -43,7 +43,7 @@ class Plot extends React.Component {
             mean.time = moment.unix(time).format('HH:mm');
             if( moment.unix(time).isValid() && !_.isNaN(mean.speed)) {
             	plotData.push(mean.speed);
-            	plotLabels.push(moment.unix(time).format('DD.MM.YYYY HH:mm'))
+            	plotLabels.push(moment.unix(time).format('DD.MM HH:mm'))
                 means.push(mean);
             }
         }

@@ -12,11 +12,12 @@ class Speedometer extends React.Component {
         latestTime: 0
     };
     componentWillReceiveProps(newProps) {
-        if (newProps.data) {
+        if (newProps.data && (newProps.data !== this.props.data)) {
+            
             const data = _.find(newProps.data, { 'algo': newProps.selectedCoin.algo });
             const speeds = _.compact(_.map(data.data, '[1].a').map(Number));
             const time = _.last(data.data)[0]*300
-            
+            console.log('time', time)
             this.setState({
                 max: _.max(speeds),
                 min: _.min(speeds),
